@@ -1,6 +1,7 @@
 package com.example;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -10,12 +11,19 @@ import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
+
+    private Lion lion;
+
+    @Before
+    public void prepareDate() throws Exception {
+        lion = new Lion(feline, "Самец");
+    }
+
     @Mock
     Feline feline;
 
     @Test
-    public void getKittensWithoutParameters_returnIntResult() throws Exception {
-        Lion lion = new Lion(feline, "Самец");
+    public void getKittensWithoutParametersReturnIntResult() throws Exception {
         int expectedKittensCount = 1;
         Mockito.when(feline.getKittens()).thenReturn(expectedKittensCount);
 
@@ -25,9 +33,8 @@ public class LionTest {
     }
 
     @Test
-    public void getFood_ReturnPredatorsFoodList() throws Exception {
+    public void getFoodReturnPredatorsFoodList() throws Exception {
         final String animalKind = "Хищник";
-        Lion lion = new Lion(feline, "Самец");
 
         List<String> expectedFoodList = List.of("KiteKat", "Sheba", "ROYAL CANIN");
         Mockito.when(feline.getFood(animalKind)).thenReturn(expectedFoodList);
@@ -39,5 +46,3 @@ public class LionTest {
         Assert.assertEquals(expectedFoodList, actualPredatorsFoodList);
     }
 }
-
-

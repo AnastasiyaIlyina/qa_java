@@ -27,7 +27,7 @@ public class LionConstructionTest {
     }
 
     @Test
-    public void doesHaveMane_returnBooleanResult() throws Exception {
+    public void doesHaveManeReturnBooleanResult() throws Exception {
         Feline feline = Mockito.mock(Feline.class);
         try {
             Lion lion = new Lion(feline, sexInput);
